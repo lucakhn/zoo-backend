@@ -1,0 +1,84 @@
+POST 	/compounds
+GET		/compounds/:id
+PATCH	/compounds/:id			//check, dass Gehege Pfleger zugewiesen ist
+	{
+		size: number,
+		animals: number[]
+	}
+ 
+POST	/animals
+DELETE	/animals/:id
+POST	/animals/:id/sell?price=10.0
+ 
+PATCH	/compounds/:id			//check, dass maximal drei Gehege Pfleger 
+zugewiesen sind UND staff ist ein Pfleger
+	{
+		caretaker: number
+	}
+ 
+POST /staff
+	{
+		job: string ("caretaker")
+	}
+ 
+post /staff 
+   {
+      "job": string ("caretaker" | "seller" |"employee"|"doc")
+   }
+ 
+Delete /staff/:id
+ 
+ 
+post /shops 
+  {
+     "name": string,
+     "category": string ("eis" |"regenschirm" |"infokarte"|"boourgir")
+   }
+ 
+patch /shop/:id 
+   {
+     "seller": number
+   }
+ 
+get /account
+ 
+Patch /account
+   {
+     "Wert": number
+   }
+ 
+ 
+ 
+# HTTP Methoden
+GET, POST, PATCH, DELETE
+ 
+ 
+# Collection
+/compounds
+ 
+#Einzelnes Objekt
+/compounds/12
+ 
+# REST/CRUD (Create read update delete)
+ 
+GET
+	- Daten abzurufen
+	- NIE Daten verändern
+	- Collections oder items
+	- Array als Rückgabewert bei collection (häufig reduziert)
+	- Object als Rückgabewert bei item
+	- KEIN Body
+POST 
+	- Meist mit body
+	- Erstellen neuer Objekte
+	- Auf collections
+	- Id wird zurückgegeben
+ 
+PATCH
+	- Daten verändern
+	- Auf einzelnen Objekten
+	- Meist mit Body
+DELETE 
+	- KEIN Body
+	- Löschen bestehender Objekte 
+	- i.d.R. auf einzelnen Objekten
