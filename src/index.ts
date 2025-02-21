@@ -14,7 +14,7 @@ app.use(cors());
 // Connecting routes
 app.route("/compounds", compoundRouter);
 app.route("/animals", animalRouter);
-app.route("/staff", staffRouter);
+app.route("/staffs", staffRouter);
 
 app.get("/", async (c) => {
   return c.text("Hello Luca! ");
