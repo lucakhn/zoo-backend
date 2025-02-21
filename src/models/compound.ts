@@ -3,14 +3,14 @@ import type { Gehege } from "../types.js";
 
 export class CompoundModel {
   static async findAll() {
-    const result = await getPool().query(`SELECT * FROM "Gehege"`);
+    const result = await getPool().query(`SELECT * FROM gehege`);
     return result.rows;
   }
 
   static async findCompound(id: string) {
     const values = [id];
     const result = await getPool().query(
-      `SELECT * FROM "Gehege" WHERE id = $1`,
+      `SELECT * FROM gehege WHERE id = $1`,
       values
     );
 
@@ -23,7 +23,7 @@ export class CompoundModel {
     const values = [data.groesse, data.instandhaltungskosten, data.name];
 
     const result = await getPool().query(
-      `INSERT INTO "Gehege" (groesse,instandhaltungskosten,name)
+      `INSERT INTO gehege (groesse,instandhaltungskosten,name)
       VALUES ($1, $2, $3)
       RETURNING *`,
       values
@@ -42,7 +42,7 @@ export class CompoundModel {
       data.id,
     ];
     const result = await getPool().query(
-      `UPDATE "Gehege" 
+      `UPDATE gehege
         SET groesse = $1, instandhaltungskosten = $2, name = $3
         WHERE id = $4
         RETURNING *`,
@@ -57,7 +57,7 @@ export class CompoundModel {
     const values = [data.groesse, data.instandhaltungskosten, data.name, id];
 
     const result = await getPool().query(
-      `UPDATE "Gehege" 
+      `UPDATE gehege 
           SET groesse = COALESCE($1,groesse),instandhaltungskosten = COALESCE($2,instandhaltungskosten), name = COALESCE($3,name)
           WHERE id = $4
           RETURNING *`,
@@ -72,7 +72,7 @@ export class CompoundModel {
   static async deleteCompound(id: string) {
     const values = [id];
     const result = await getPool().query(
-      `DELETE FROM "Gehege" WHERE id = $1 RETURNING *`,
+      `DELETE FROM gehege WHERE id = $1 RETURNING *`,
       values
     );
 
